@@ -1,0 +1,109 @@
+{
+  "greeting": "👋 Welcome! How can I help you today?",
+  "main_menu": {
+    "title": "Main Menu",
+    "body": "Please choose a category from the options below.",
+    "options": [
+      { "id": "general_queries", "title": "General Queries" },
+      { "id": "payments", "title": "Payments" },
+      { "id": "orders", "title": "Orders" },
+      { "id": "shipping", "title": "Shipping" },
+      { "id": "refunds", "title": "Refunds" },
+      { "id": "technical_support", "title": "Technical Support" },
+      { "id": "contact_info", "title": "Contact Information" }
+    ]
+  },
+  "menus": {
+    "general_queries": {
+      "title": "General Queries",
+      "body": "Here are some common questions. Please select one.",
+      "options": [
+        {
+          "id": "faq_what_is_this",
+          "title": "What is this service?",
+          "action": {
+            "type": "reply",
+            "body": "This is an automated FAQ assistant to help you with your questions."
+          }
+        },
+        {
+          "id": "faq_hours",
+          "title": "What are your hours?",
+          "action": {
+            "type": "reply",
+            "body": "Our team is available from 9 AM to 6 PM, Monday to Friday."
+          }
+        }
+      ]
+    },
+    "payments": {
+      "title": "Payments",
+      "body": "Please select a payment-related question.",
+      "options": [
+        {
+          "id": "faq_payment_methods",
+          "title": "What payment methods?",
+          "action": {
+            "type": "reply",
+            "body": "We accept all major credit cards, PayPal, and bank transfers."
+          }
+        },
+        {
+          "id": "faq_payment_failed",
+          "title": "My payment failed",
+          "action": {
+            "type": "reply",
+            "body": "If your payment failed, please double-check your card details or try a different payment method. If the issue persists, contact your bank."
+          }
+        }
+      ]
+    },
+    "orders": {
+        "title": "Orders",
+        "body": "Here are some topics related to orders.",
+        "options": []
+    },
+    "shipping": {
+        "title": "Shipping",
+        "body": "Here are some topics related to shipping.",
+        "options": []
+    },
+    "refunds": {
+        "title": "Refunds",
+        "body": "Here are some topics related to refunds.",
+        "options": []
+    },
+    "technical_support": {
+        "title": "Technical Support",
+        "body": "Here are some topics related to technical support.",
+        "options": []
+    },
+    "contact_info": {
+      "title": "Contact Information",
+      "body": "How would you like to contact us?",
+      "options": [
+        {
+          "id": "contact_call",
+          "title": "Call Us",
+          "action": {
+            "type": "cta_call",
+            "body": "You can call us at the number below.",
+            "phone_number": "+1234567890"
+          }
+        },
+        {
+          "id": "contact_website",
+          "title": "Visit Website",
+          "action": {
+            "type": "cta_url",
+            "body": "Visit our website for more information.",
+            "url": "https://www.example.com"
+          }
+        }
+      ]
+    }
+  },
+  "fallback": {
+    "body": "I'm sorry, I didn't understand that. Please choose an option from the menu, or type 'menu' to see the main menu again."
+  }
+}

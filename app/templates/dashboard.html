@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <header class="dashboard-header">
+            <h1>WhatsApp Chat Dashboard</h1>
+        </header>
+
+        <main class="dashboard-main">
+            <aside class="user-list-panel">
+                <h2>Conversations</h2>
+                <ul id="user-list">
+                    <!-- User list will be populated by JavaScript -->
+                    <li class="loading">Loading users...</li>
+                </ul>
+            </aside>
+
+            <section class="chat-panel">
+                <div id="chat-welcome" class="chat-welcome-message">
+                    <p>Select a conversation to start chatting.</p>
+                </div>
+
+                <div id="chat-window" class="hidden">
+                    <header class="chat-header">
+                        <h3 id="chat-with-user"></h3>
+                    </header>
+                    <div id="message-list" class="message-list">
+                        <!-- Messages will be populated by JavaScript -->
+                    </div>
+                    <footer class="chat-footer">
+                        <form id="reply-form">
+                            <input type="text" id="reply-message" placeholder="Type your message..." autocomplete="off" required>
+                            <button type="submit">Send</button>
+                        </form>
+                    </footer>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="/static/app.js"></script>
+</body>
+</html>
