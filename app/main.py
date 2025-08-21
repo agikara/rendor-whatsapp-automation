@@ -1,6 +1,7 @@
 from fastapi import FastAPI
 from fastapi.staticfiles import StaticFiles
-from .database import create_db_and_tables
+from app.database import create_db_and_tables
+
 from . import models
 from .routers import webhook, dashboard
 

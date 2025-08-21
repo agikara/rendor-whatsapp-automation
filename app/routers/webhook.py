@@ -1,15 +1,29 @@
+
 from fastapi import APIRouter, Request, Response, HTTPException, Depends
 from sqlalchemy.orm import Session
 from ..config import settings
 from ..database import get_db
 from .. import crud, schemas
 from ..faq_service import faq_service
+from ..whatsapp_client import whatsapp_client
 import logging
 
 router = APIRouter()
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
+
+# Command handler function
+def handle_command(to: str, command_text: str):
+    command_text = command_text.lower().strip()
+    if command_text == "/kara":
+        whatsapp_client.send_text_message(to, "It’s ABDULLAH CHAUHARY 🚀")
+    elif command_text == "/help":
+        whatsapp_client.send_text_message(to, "Available commands:\n/KARA - About me\n/help - Show menu\n/menu - Show options")
+    elif command_text == "/menu":
+        whatsapp_client.send_text_message(to, "📌 Menu:\n1. AI Updates\n2. Premium Tricks\n3. Support")
+    else:
+        whatsapp_client.send_text_message(to, "❌ Unknown command. Type /help")
 
 @router.get("/webhook")
 async def verify_webhook(request: Request):
@@ -47,8 +61,10 @@ async def handle_webhook(request: Request, db: Session = Depends(get_db)):
         if message_type == "text":
             content = message_data.get("text", {}).get("body", "")
             crud.create_message(db, message=schemas.MessageCreate(content=content, direction="incoming"), user_id=user.id)
-            # Simple trigger for the main menu
-            if content.lower() in ["hi", "hello", "menu"]:
+            
+            if content.startswith("/"):
+                handle_command(whatsapp_id, content)
+            elif content.lower() in ["hi", "hello", "menu"]:
                  faq_service.get_greeting_message_and_main_menu(to=whatsapp_id)
             else:
                  faq_service.send_fallback_message(to=whatsapp_id)
@@ -83,3 +99,5 @@ async def handle_webhook(request: Request, db: Session = Depends(get_db)):
         logger.error(f"An unexpected error occurred: {e}")
 
     return Response(status_code=200)
+
+

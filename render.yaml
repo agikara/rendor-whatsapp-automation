@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: whatsapp-automation-api
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: DATABASE_URL
+        value: sqlite:///./whatsapp_faq.db
+      # Add any other environment variables your application needs, e.g., for WhatsApp API keys
+      # - key: WHATSAPP_API_KEY
+      #   sync: false # Mark as sync: false if you want to set this manually in Render UI for security
