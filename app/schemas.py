@@ -1,6 +1,8 @@
-from pydantic import BaseModel
 from datetime import datetime
 from typing import List, Optional
+
+from pydantic import BaseModel, Field
+
 
 # Message Schemas
 class MessageBase(BaseModel):
@@ -9,8 +11,10 @@ class MessageBase(BaseModel):
     message_type: str = "text"
     whatsapp_message_id: Optional[str] = None
 
+
 class MessageCreate(MessageBase):
     pass
+
 
 class Message(MessageBase):
     id: int
@@ -23,14 +27,17 @@ class Message(MessageBase):
 
 # Dashboard Schemas
 class SendMessageRequest(BaseModel):
-    text: str
+    text: Optional[str] = None
+
 
 # User Schemas
 class UserBase(BaseModel):
     whatsapp_id: str
 
+
 class UserCreate(UserBase):
     pass
+
 
 class UserSummary(UserBase):
     id: int
@@ -38,10 +45,11 @@ class UserSummary(UserBase):
     class Config:
         from_attributes = True
 
+
 class User(UserBase):
     id: int
     created_at: datetime
-    messages: List[Message] = []
+    messages: List[Message] = Field(default_factory=list)
 
     class Config:
         from_attributes = True

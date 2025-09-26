@@ -3,45 +3,79 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Dashboard</title>
+    <title>{{ dashboard_title }}</title>
     <link rel="stylesheet" href="/static/styles.css">
 </head>
 <body>
-    <div class="dashboard-container">
-        <header class="dashboard-header">
-            <h1>WhatsApp Chat Dashboard</h1>
+    <div class="dashboard-shell">
+        <header class="dashboard-topbar">
+            <div class="brand">
+                <h1>{{ dashboard_title }}</h1>
+                <p>Monitor the WhatsApp FAQ bot, respond instantly, and never miss a lead.</p>
+            </div>
+            <div class="topbar-actions">
+                <input id="user-search" type="search" placeholder="Search WhatsApp ID" aria-label="Search contacts">
+                <button id="refresh-users" type="button">Refresh</button>
+            </div>
         </header>
 
-        <main class="dashboard-main">
-            <aside class="user-list-panel">
-                <h2>Conversations</h2>
-                <ul id="user-list">
-                    <!-- User list will be populated by JavaScript -->
-                    <li class="loading">Loading users...</li>
-                </ul>
+        <div id="dashboard-notification" class="dashboard-notification" role="status" aria-live="polite"></div>
+
+        <div class="dashboard-grid">
+            <aside class="sidebar" aria-label="Conversation directory">
+                <section class="stats-panel" aria-label="Dashboard insights">
+                    <article class="stat-card">
+                        <span class="stat-label">Total Contacts</span>
+                        <span id="stats-total-users" class="stat-value">0</span>
+                    </article>
+                    <article class="stat-card">
+                        <span class="stat-label">Active Chat</span>
+                        <span id="stats-active-chat" class="stat-value">-</span>
+                    </article>
+                </section>
+
+                <section class="user-list-panel" aria-label="Conversation list">
+                    <div class="user-list-header">
+                        <h2>Conversations</h2>
+                        <span class="user-list-count" id="user-list-count">0</span>
+                    </div>
+                    <ul id="user-list" class="user-list">
+                        <li class="loading">Loading users...</li>
+                    </ul>
+                </section>
             </aside>
 
-            <section class="chat-panel">
-                <div id="chat-welcome" class="chat-welcome-message">
-                    <p>Select a conversation to start chatting.</p>
+            <main class="chat-panel" aria-live="polite">
+                <div id="chat-welcome" class="chat-placeholder">
+                    <h2>Select a conversation</h2>
+                    <p>The full conversation history ? including automation responses and button flows ? will appear here.</p>
                 </div>
 
-                <div id="chat-window" class="hidden">
+                <section id="chat-window" class="chat-window hidden" aria-label="Chat window">
                     <header class="chat-header">
-                        <h3 id="chat-with-user"></h3>
+                        <div class="chat-title">
+                            <h3 id="chat-with-user"></h3>
+                            <p class="chat-subtitle" id="chat-subtitle">Awaiting interaction...</p>
+                        </div>
+                        <div class="chat-toolbar">
+                            <button type="button" id="chat-refresh" aria-label="Refresh messages">? Refresh</button>
+                        </div>
                     </header>
-                    <div id="message-list" class="message-list">
-                        <!-- Messages will be populated by JavaScript -->
-                    </div>
+
+                    <ul id="message-list" class="message-list" aria-label="Conversation history"></ul>
+
                     <footer class="chat-footer">
-                        <form id="reply-form">
-                            <input type="text" id="reply-message" placeholder="Type your message..." autocomplete="off" required>
+                        <form id="reply-form" autocomplete="off" novalidate>
+                            <textarea id="reply-message" rows="1" placeholder="Type a message..." aria-label="Reply message"></textarea>
+                            <label class="file-upload-control" for="file-upload" title="Attach file">??
+                                <input type="file" id="file-upload" accept="image/*,.pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx">
+                            </label>
                             <button type="submit">Send</button>
                         </form>
                     </footer>
-                </div>
-            </section>
-        </main>
+                </section>
+            </main>
+        </div>
     </div>
 
     <script src="/static/app.js"></script>

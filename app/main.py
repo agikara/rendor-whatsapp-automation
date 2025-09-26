@@ -16,6 +16,6 @@ app.include_router(dashboard.router)
 def on_startup():
     create_db_and_tables()
 
-@app.get("/")
-def read_root():
+@app.get("/", include_in_schema=False)
+async def root():
     return {"message": "WhatsApp FAQ Bot is running."}

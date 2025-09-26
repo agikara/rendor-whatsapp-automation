@@ -1,5 +1,5 @@
 {
-  "greeting": "👋 Welcome! How can I help you today?",
+  "greeting": "Welcome! How can I help you today?",
   "main_menu": {
     "title": "Main Menu",
     "body": "Please choose a category from the options below.",
@@ -42,7 +42,7 @@
       "options": [
         {
           "id": "faq_payment_methods",
-          "title": "What payment methods?",
+          "title": "What payment methods do you accept?",
           "action": {
             "type": "reply",
             "body": "We accept all major credit cards, PayPal, and bank transfers."
@@ -53,30 +53,30 @@
           "title": "My payment failed",
           "action": {
             "type": "reply",
-            "body": "If your payment failed, please double-check your card details or try a different payment method. If the issue persists, contact your bank."
+            "body": "If your payment failed, double-check your card details or try a different payment method. If the issue persists, contact your bank."
           }
         }
       ]
     },
     "orders": {
-        "title": "Orders",
-        "body": "Here are some topics related to orders.",
-        "options": []
+      "title": "Orders",
+      "body": "Here are some topics related to orders.",
+      "options": []
     },
     "shipping": {
-        "title": "Shipping",
-        "body": "Here are some topics related to shipping.",
-        "options": []
+      "title": "Shipping",
+      "body": "Here are some topics related to shipping.",
+      "options": []
     },
     "refunds": {
-        "title": "Refunds",
-        "body": "Here are some topics related to refunds.",
-        "options": []
+      "title": "Refunds",
+      "body": "Here are some topics related to refunds.",
+      "options": []
     },
     "technical_support": {
-        "title": "Technical Support",
-        "body": "Here are some topics related to technical support.",
-        "options": []
+      "title": "Technical Support",
+      "body": "Here are some topics related to technical support.",
+      "options": []
     },
     "contact_info": {
       "title": "Contact Information",
@@ -104,6 +104,6 @@
     }
   },
   "fallback": {
-    "body": "I'm sorry, I didn't understand that. Please choose an option from the menu, or type 'menu' to see the main menu again."
+    "body": "I did not understand that. Please choose an option from the menu, or type 'menu' to see the main menu again."
   }
 }
